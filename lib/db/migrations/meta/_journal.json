@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1710771511441,
+      "tag": "0000_slim_next_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1710777236676,
+      "tag": "0001_remarkable_scream",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710792101566,
+      "tag": "0002_tearful_madelyne_pryor",
+      "breakpoints": true
+    }
+  ]
+}
