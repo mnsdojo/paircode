@@ -3,9 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextAuthProvider from "@/lib/auth/auth-provider";
-import Header from "./header";
+import Header from "../components/header";
 const inter = Inter({ subsets: ["latin"] });
 import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "PairCode",
   description: "An application to help pairing with developers online",
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Header />
             <NextTopLoader />
             {children}
+            <Toaster />
           </NextAuthProvider>
         </ThemeProvider>
       </body>

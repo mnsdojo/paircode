@@ -69,12 +69,17 @@ export const PairCodeVideo = ({ room }: { room: Room }) => {
     <>
       {client && call && (
         <StreamVideo client={client}>
-          <StreamTheme />
-          <StreamCall call={call}>
-            <SpeakerLayout />
-            <CallControls onLeave={() => router.push("/")} />
-            <CallParticipantsList onClose={() => undefined} />
-          </StreamCall>
+          <StreamTheme>
+            <StreamCall call={call}>
+              <SpeakerLayout />
+              <CallControls
+                onLeave={() => {
+                  router.push("/");
+                }}
+              />
+              <CallParticipantsList onClose={() => undefined} />
+            </StreamCall>
+          </StreamTheme>
         </StreamVideo>
       )}
     </>

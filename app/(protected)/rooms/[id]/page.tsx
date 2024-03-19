@@ -13,6 +13,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 import { PairCodeVideo } from "./video-player";
+import { unstable_noStore } from "next/cache";
 
 interface Props {
   params: {
@@ -21,6 +22,7 @@ interface Props {
 }
 
 async function RoomPage({ params }: Props) {
+  unstable_noStore();
   if (!params.id) {
     notFound();
   }

@@ -11,9 +11,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import { LogInIcon, LogOutIcon } from "lucide-react";
+import { LogOutIcon } from "lucide-react";
 import Link from "next/link";
-import { getUserAuth } from "@/lib/auth/utils";
+import Image from "next/image";
 
 const ProfileDropDown = () => {
   const session = useSession();
@@ -31,24 +31,15 @@ const ProfileDropDown = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>
-            {isLoggedIn ? (
-              <DropdownMenuItem
-                onClick={() =>
-                  signOut({
-                    callbackUrl: "/",
-                  })
-                }
-              >
-                <LogOutIcon className="mr-2" /> Sign Out
-              </DropdownMenuItem>
-            ) : (
-              <DropdownMenuItem
-                className="mr-2"
-                onClick={() => signIn("github")}
-              >
-                <LogInIcon />
-              </DropdownMenuItem>
-            )}
+            <DropdownMenuItem
+              onClick={() =>
+                signOut({
+                  callbackUrl: "/",
+                })
+              }
+            >
+              <LogOutIcon className="mr-2" /> Sign Out
+            </DropdownMenuItem>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -58,16 +49,25 @@ const ProfileDropDown = () => {
 
 export default function Header() {
   const session = useSession();
+  const isLoggedIn = !!session.data;
   return (
-    <header className="container rounded mx-auto dark:bg-gray-900 py-4 bg-gray-50">
+    <header className="container rounded mx-auto dark:bg-gray-900 py-4 bg-gray-50 relative z-10">
       <div className="flex items-center justify-between">
-        <div className="">
+        <div className="flex items-center">
           <Link href="/" className="text-lg font-medium">
-            PairCode
+            Pair Code
           </Link>
+          {isLoggedIn && (
+            <Link className="ml-4 hover:underline" href="/your_rooms">
+              Your Rooms
+            </Link>
+          )}
         </div>
         <div className="flex flex-row items-center space-x-4">
           {session.data && <ProfileDropDown />}
+          {!session.data && (
+            <Button onClick={() => signIn("github")}>Sign In</Button>
+          )}
           <ModeToggle />
         </div>
       </div>

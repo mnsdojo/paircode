@@ -10,6 +10,11 @@ export async function createRoomAction(roomData: Omit<Room, "userId" | "id">) {
   if (!session) {
     throw new Error("You must be logged in before creating this room");
   }
-  await db.insert(room).values({ ...roomData, userId: session?.user.id! });
+  const res = await db
+    .insert(room)
+    .values({ ...roomData, userId: session?.user.id! })
+    .returning();
+
   revalidatePath("/");
+  return res[0];
 }

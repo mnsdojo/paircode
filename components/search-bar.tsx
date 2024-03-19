@@ -58,8 +58,9 @@ function SearchBar() {
             </FormItem>
           )}
         />
-        <Button type="submit" variant="outline" size="icon">
-          <SearchIcon />
+        <Button type="submit">
+          <SearchIcon className="mr-4" />
+          Search
         </Button>
         {query.get("search") && (
           <Button
