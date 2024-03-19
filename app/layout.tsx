@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import NextAuthProvider from "@/lib/auth/auth-provider";
 import Header from "./header";
 const inter = Inter({ subsets: ["latin"] });
-
+import NextTopLoader from "nextjs-toploader";
 export const metadata: Metadata = {
   title: "PairCode",
   description: "An application to help pairing with developers online",
@@ -27,6 +27,7 @@ export default function RootLayout({
         >
           <NextAuthProvider>
             <Header />
+            <NextTopLoader />
             {children}
           </NextAuthProvider>
         </ThemeProvider>

@@ -1,5 +1,5 @@
 "use client";
-
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -23,14 +23,12 @@ export const PairCodeVideo = ({ room }: { room: Room }) => {
   const router = useRouter();
   const [client, setClient] = useState<StreamVideoClient | null>(null);
   const [call, setCall] = useState<Call | null>(null);
-  const [loading, setLoading] = useState(false); // State for loading indicator
 
   useEffect(() => {
     if (!room || !session.data) return;
 
     const initializeClient = async () => {
       try {
-        setLoading(true); // Set loading state to true
         const userId = session.data.user?.id;
         const client = new StreamVideoClient({
           apiKey,
@@ -48,8 +46,6 @@ export const PairCodeVideo = ({ room }: { room: Room }) => {
         setCall(call);
       } catch (error) {
         console.error("Error occurred during initialization:", error);
-      } finally {
-        setLoading(false); // Set loading state back to false
       }
     };
 
@@ -71,7 +67,6 @@ export const PairCodeVideo = ({ room }: { room: Room }) => {
 
   return (
     <>
-      {loading && <p>Loading...</p>} {/* Display loading indicator */}
       {client && call && (
         <StreamVideo client={client}>
           <StreamTheme />
