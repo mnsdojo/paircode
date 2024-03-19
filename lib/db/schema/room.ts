@@ -18,7 +18,7 @@ export const room = pgTable("room", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
-  language: text("language").notNull(),
+  tags: text("language").notNull(),
   githubRepo: text("github"),
   description: text("description").notNull(),
 });

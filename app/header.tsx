@@ -13,6 +13,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { LogInIcon, LogOutIcon } from "lucide-react";
 import Link from "next/link";
+import { getUserAuth } from "@/lib/auth/utils";
 
 const ProfileDropDown = () => {
   const session = useSession();
@@ -24,14 +25,20 @@ const ProfileDropDown = () => {
           <Button variant="ghost" className="h-8 w-8 rounded-full">
             <Avatar className="h-8 w-8">
               <AvatarImage src={session?.data?.user.image!} alt="@mns" />
-              <AvatarFallback>Profile</AvatarFallback>
+              <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>
             {isLoggedIn ? (
-              <DropdownMenuItem onClick={() => signOut()}>
+              <DropdownMenuItem
+                onClick={() =>
+                  signOut({
+                    callbackUrl: "/",
+                  })
+                }
+              >
                 <LogOutIcon className="mr-2" /> Sign Out
               </DropdownMenuItem>
             ) : (
@@ -50,6 +57,7 @@ const ProfileDropDown = () => {
 };
 
 export default function Header() {
+  const session = useSession();
   return (
     <header className="container rounded mx-auto dark:bg-gray-900 py-4 bg-gray-50">
       <div className="flex items-center justify-between">
@@ -59,7 +67,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex flex-row items-center space-x-4">
-          <ProfileDropDown />
+          {session.data && <ProfileDropDown />}
           <ModeToggle />
         </div>
       </div>

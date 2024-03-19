@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
@@ -19,7 +19,7 @@ import { createRoomAction } from "./actions";
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   description: z.string().min(1).max(50),
-  language: z.string().min(1).max(50),
+  tags: z.string().min(1).max(50),
   githubRepo: z.string(),
 });
 function CreateRoomForm() {
@@ -30,7 +30,7 @@ function CreateRoomForm() {
       description: "",
       githubRepo: "",
       name: "",
-      language: "",
+      tags: "",
     },
   });
 
@@ -92,15 +92,15 @@ function CreateRoomForm() {
 
           <FormField
             control={form.control}
-            name="language"
+            name="tags"
             render={({ field }) => (
               <FormItem>
-                <FormLabel> Primary Programming</FormLabel>
+                <FormLabel> Tags</FormLabel>
                 <FormControl>
-                  <Input  placeholder="language" {...field} />
+                  <Input placeholder="language" {...field} />
                 </FormControl>
                 <FormDescription>
-                  Please enter your programming language you working on
+                  Please enter your programming language tags
                 </FormDescription>
                 <FormMessage />
               </FormItem>

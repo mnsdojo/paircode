@@ -1,11 +1,11 @@
 import RoomCard from "@/components/room_card";
 import { Button } from "@/components/ui/button";
-import { db } from "@/lib/db";
+import { getRooms } from "@/services/rooms";
 import Link from "next/link";
 import React from "react";
 
 async function Page() {
-  const rooms = await db.query.room.findMany();
+  const rooms = await getRooms();
   return (
     <main className="min-h-screen container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8">

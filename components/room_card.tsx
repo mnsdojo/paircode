@@ -13,6 +13,7 @@ import React from "react";
 import Link from "next/link";
 import { GithubIcon } from "lucide-react";
 import { Button } from "./ui/button";
+import TagList, { splitTags } from "./taglist";
 
 type CardProps = React.ComponentProps<typeof Card> & {
   room: Room;
@@ -28,17 +29,18 @@ function RoomCard({ className, room, ...props }: CardProps) {
         <CardContent>
           <Link
             href={room.githubRepo!}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 mb-4"
             target="_blank"
             rel="noopener noreferrer"
           >
             <GithubIcon />
             Github Project
           </Link>
+          <TagList tags={splitTags(room?.tags!)} />
         </CardContent>
         <CardFooter>
           <Button asChild variant={"secondary"}>
-            <Link href={`room/${room.id}`}>Join Room</Link>
+            <Link href={`rooms/${room.id}`}>Join Room</Link>
           </Button>
         </CardFooter>
       </Card>
