@@ -51,8 +51,8 @@ export default function Header() {
   const session = useSession();
   const isLoggedIn = !!session.data;
   return (
-    <header className="container rounded mx-auto dark:bg-gray-900 py-4 bg-gray-50 relative z-10">
-      <div className="flex items-center justify-between">
+    <header className=" rounded mx-auto dark:bg-gray-900 py-4 bg-gray-50 relative z-10">
+      <div className="flex container mx-auto items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="text-lg font-medium">
             Pair Code

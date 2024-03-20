@@ -6,8 +6,6 @@ import { editRoom, getRoom } from "@/services/rooms";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-
-
 export async function editRoomAction(roomData: Omit<Room, "userId">) {
   const { session } = await getUserAuth();
 

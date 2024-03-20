@@ -28,6 +28,7 @@ const formSchema = z.object({
 
 export function EditRoomForm({ room }: { room: Room }) {
   const params = useParams();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +42,7 @@ export function EditRoomForm({ room }: { room: Room }) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       await editRoomAction({
-        id: params.roomId as string,
+        id: params.id as string,
         ...values,
       });
       toast({
