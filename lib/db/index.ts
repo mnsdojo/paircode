@@ -8,4 +8,3 @@ export const client = neon(env.DATABASE_URL);
 export const db = drizzle(client as any, {
   schema: { ...schema, ...roomSchema },
 });
-

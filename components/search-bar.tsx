@@ -40,7 +40,7 @@ function SearchBar() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex items-center gap-4 w-full  "
+        className="flex items-center gap-4 w-full  flex-wrap "
       >
         <FormField
           control={form.control}

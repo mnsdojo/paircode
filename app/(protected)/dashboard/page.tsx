@@ -28,20 +28,13 @@ async function Page({ searchParams }: Props) {
         {rooms.map((d) => (
           <RoomCard key={d.id} room={d} />
         ))}
-        {rooms.length === 0 && (
-          <div className="flex flex-col gap-4 justify-center items-center">
-            <Image
-              src="/notfound.svg"
-              alt="notfound"
-              width="200"
-              height="200"
-            />
-            <h2 className="text-2xl ">
-              No Rooms found, but you can create one
-            </h2>
-          </div>
-        )}
       </div>
+      {rooms.length === 0 && (
+        <div className="flex flex-col gap-4 justify-center items-center">
+          <Image src="/notfound.svg" alt="notfound" width="200" height="200" />
+          <h2 className="text-2xl ">No Rooms found, but you can create one</h2>
+        </div>
+      )}
     </main>
   );
 }

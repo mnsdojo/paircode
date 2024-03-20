@@ -41,7 +41,7 @@ function CreateRoomForm() {
       title: "Room Created",
       description: "Your room was successfully created",
     });
-    push("/");
+    push("/dashboard");
   }
 
   return (
